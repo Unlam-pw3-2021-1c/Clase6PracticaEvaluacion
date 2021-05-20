@@ -1,0 +1,36 @@
+﻿@using Newtonsoft.Json; 
+@model List<Entidades.Pelicula>
+@{
+    ViewData["Title"] = "Listado de Peliculas!";
+}
+<div>
+    <h1>PELICULAS!</h1>
+</div>
+
+<a href="/Peliculas/Crear">Crear Pelicula</a>
+
+@if (TempData["UltPeli"] != null)
+{
+    <div style="color:forestgreen;font-weight:bold;">
+        Pelicula @((JsonConvert.DeserializeObject<Entidades.Pelicula>(TempData["UltPeli"].ToString())).Titulo) agregada exitosamente.
+    </div>
+}
+<table>
+    <tr>
+        <th>Titulo</th>
+        <th>Genero</th>
+        <th>Duracion</th>
+        <th>Calificacion</th>
+        <th>Sinopsis</th>
+    </tr>
+    @foreach (var p in Model)
+    {
+        <tr>
+            <td>@p.Titulo</td>
+            <td>@p.Genero.Titulo</td>
+            <td>@p.DuracionMinutos</td>
+            <td>@p.Calificacion</td>
+            <td>@p.Sinopsis</td>
+        </tr>
+    }
+</table>

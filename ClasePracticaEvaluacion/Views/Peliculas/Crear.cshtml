@@ -1,0 +1,40 @@
+﻿@model Entidades.Pelicula
+@{
+    ViewData["Title"] = "Crear Pelicula";
+}
+<div>
+    <h1>Crear PELICULAS</h1>
+</div>
+
+<a href="/">Volver</a>
+
+<form action="/Peliculas/Crear" method="post">
+    <div>
+        Titulo: <input type="text" asp-for="Titulo" value="" />
+        <span asp-validation-for="Titulo"></span>
+    </div>
+    <div>
+        Genero:
+        <select name="Genero.Id">
+            <option value="">Seleccione Genero</option>
+            @foreach (var g in (List<Entidades.Genero>)ViewData["Generos"])
+            {
+                <option value="@g.Id">@g.Titulo</option>
+            }
+        </select>
+    </div>
+    <div>
+        Calificacion:  <input type="text" name="Calificacion" value="" />
+    </div>
+    <div>
+        Sinopsis:  <input type="text" name="Sinopsis" value="" />
+    </div>
+    <div>
+        Duracion: <input type="text" name="DuracionMinutos" value="" />
+    </div>
+    <input type="submit" value="Crear" />
+</form>
+@section Scripts
+{
+    <partial name="/Views/Shared/_ValidationScriptsPartial.cshtml" />
+}
